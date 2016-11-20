@@ -100,20 +100,25 @@ int main() {
 		float d1 = (rand() / double(RAND_MAX) - 0.5) * 2.;
 		float d2 = (rand() / double(RAND_MAX) - 0.5) * 2.;
 
-		constexpr int P = 24;
+		float d3 = (rand() / double(RAND_MAX) - 0.5) * 2. + 2.;
+
+		constexpr int P = 28;
 
 		auto v1 = fixedPoint::Value<P>::make(d1);
 		auto v2 = fixedPoint::Value<P>::make(d2);
+		auto v3 = fixedPoint::Value<P>::make(d3);
 
-//		std::cout << d1 << " " << v1 << "\n";
+//		std::cout << v1.getValue() - d1 << "\n";
+
+//		std::cout << d1 << " " << d2 << " " << d3 << " - " << v1 << " " << v2 << " " << v3 << "\n";
 		auto e1 = d1 * d2;
 		auto e2 = v1*v2;
-		meanErrorDiv += std::abs(e1 - e2.getValue());
+		meanErrorMul += std::abs(e1 - e2.getValue());
 //		std::cout << e1 << " - " << e2 << " " << e1 - e2.getValue() << "\n";
 
-		auto e3 = d1 / d2;
-		auto e4 = v1/v2;
-		meanErrorMul += std::abs(e3 - e4.getValue());
+		auto e3 = d1 / d3;
+		auto e4 = v1 / v3;
+		meanErrorDiv += std::abs(e3 - e4.getValue());
 //		std::cout << e3 << " - " << e4 << " " << e3 - e4.getValue() << "\n";
 		ct += 1;
 	}
