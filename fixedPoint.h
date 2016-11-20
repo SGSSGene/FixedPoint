@@ -21,7 +21,7 @@ namespace fixedPoint {
 		template <typename RT>
 		static auto make(RT _v) -> Value {
 			Value v;
-			v.value = _v * std::pow(2., double(shift));
+			v.value = _v * (1<<shift);
 			return v;
 		}
 
@@ -74,7 +74,7 @@ namespace fixedPoint {
 		}
 
 		auto getValue() const -> float {
-			return double(value) / std::pow(2.f, double(shift));
+			return double(value) / (1<<shift);
 		}
 	};
 
